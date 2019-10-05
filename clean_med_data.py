@@ -253,44 +253,45 @@ def merge_clean_tables(directory_path: str):
 
     df.to_csv("med_data_merged.csv", index = False)
 
+if  __name__== "__main__":
 
-remove_all_cleaned_files(os.getcwd())
+    remove_all_cleaned_files(os.getcwd())
 
-clean_general_info("Hospital_General_Information.csv",
-                  exclude_cols = ["footnote",
-                                  "measure_id",
-                                  "start_date",
-                                  "end_date",
-                                  "hospital_name",
-                                  "zip_code",
-                                  "location",
-                                  "address",
-                                  "phone_number",
-                                  "city",
-                                 "county_name"],
-                  na_to_clean = ["Not Available"],
-                  convert_additional_cols = \
-                   ["meets_criteria_for_meaningful_use_of_ehrs"])
+    clean_general_info("Hospital_General_Information.csv",
+                      exclude_cols = ["footnote",
+                                      "measure_id",
+                                      "start_date",
+                                      "end_date",
+                                      "hospital_name",
+                                      "zip_code",
+                                      "location",
+                                      "address",
+                                      "phone_number",
+                                      "city",
+                                     "county_name"],
+                      na_to_clean = ["Not Available"],
+                      convert_additional_cols = \
+                       ["meets_criteria_for_meaningful_use_of_ehrs"])
 
 
-clean_mspb_info("Medicare_hospital_spending_per_patient__" \
-                     "Medicare_Spending_per_Beneficiary____Additional_Decimal_Places.csv",
-                    exclude_cols = ["footnote",
-                                    "location",
-                                    "measure_id",
-                                    "start_date",
-                                    "end_date",],
-                na_to_clean = ["Not Available"])
+    clean_mspb_info("Medicare_hospital_spending_per_patient__" \
+                         "Medicare_Spending_per_Beneficiary____Additional_Decimal_Places.csv",
+                        exclude_cols = ["footnote",
+                                        "location",
+                                        "measure_id",
+                                        "start_date",
+                                        "end_date",],
+                    na_to_clean = ["Not Available"])
 
-clean_readmissions_info("Hospital_Readmissions_Reduction_Program.csv",
-                       exclude_cols = ["footnote",
-                                       "start_date",
-                                       "end_date",
-                                       "hospital_name", 
-                                       "state",
-                                       "region"],
-                       na_to_clean = ["Not Available", "Too Few to Report"])
+    clean_readmissions_info("Hospital_Readmissions_Reduction_Program.csv",
+                           exclude_cols = ["footnote",
+                                           "start_date",
+                                           "end_date",
+                                           "hospital_name", 
+                                           "state",
+                                           "region"],
+                           na_to_clean = ["Not Available", "Too Few to Report"])
 
-merge_clean_tables(os.getcwd())
+    merge_clean_tables(os.getcwd())
 
-bin_states_to_region("med_data_merged.csv")
+    bin_states_to_region("med_data_merged.csv")
