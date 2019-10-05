@@ -7,6 +7,9 @@ import numpy as np
 import warnings
 warnings.simplefilter(action='ignore')
 
+raw_path = "../data/raw_data/"
+processed_path = "../data/processed_data/"
+
 
 def drop_exclude_cols(df, exclude_cols):
 
@@ -38,7 +41,7 @@ def clean_na_values(df, na_to_clean = list):
 
 def save_cleaned_csv(df, csv_path: str):
 
-    df.to_csv(f"{csv_path.split('.')[0]}_cleaned.csv",
+    df.to_csv(f"{processed_path}{csv_path.split('.')[0]}_cleaned.csv",
               index = False)
 
 
@@ -108,7 +111,10 @@ def remove_all_cleaned_files(directory_path: str):
     cleaned_files = [f for f in os.listdir(directory_path) if "_cleaned" in f]
 
     for f in cleaned_files:
-        os.remove(f)
+         print(f)
+    if  len(cleaned_files) > 0:
+       for f in cleaned_files:
+           os.remove(f"{directory_path}{f}")
 
 
 def bin_states_to_region(directory_path: str):
@@ -148,7 +154,7 @@ def bin_states_to_region(directory_path: str):
     state_to_region_df.columns = ['state', 'region']
 
     # Merge time zones with dataframe and clean data types
-    df = pd.read_csv(directory_path)
+    df = pd.read_csv(f"{processed_path}{directory_path}")
     
     df = pd.merge(left = df ,
                   right = state_to_region_df,
@@ -156,7 +162,7 @@ def bin_states_to_region(directory_path: str):
                   on = 'state')
 
     # Save cleaned csv
-    df.to_csv('med_data_merged_geo.csv', index = False)
+    df.to_csv(f"{processed_path}med_data_merged_geo.csv", index = False)
 
 
 def clean_general_info(csv_path: str,
@@ -164,7 +170,7 @@ def clean_general_info(csv_path: str,
                       na_to_clean: list,
                       convert_additional_cols: list):
     # Import csv
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(f"{raw_path}{csv_path}")
 
     df = tidy_columns(df)
     
@@ -186,7 +192,7 @@ def clean_general_info(csv_path: str,
                       na_to_clean: list,
                       convert_additional_cols: list):
     # Import csv
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(f"{raw_path}{csv_path}")
 
     df = tidy_columns(df)
 
@@ -208,7 +214,7 @@ def clean_mspb_info(csv_path: str,
                       na_to_clean: []):
 
     # Import csv
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(f"{raw_path}{csv_path}")
 
     df = tidy_columns(df)
 
@@ -225,8 +231,8 @@ def clean_readmissions_info(csv_path: str,
                             exclude_cols: list,
                            na_to_clean = list):
     # Import csv
-    df = pd.read_csv(csv_path)
-    
+    df = pd.read_csv(f"{raw_path}{csv_path}")
+
     df = tidy_columns(df)
     
     df = drop_exclude_cols(df,exclude_cols)
@@ -244,18 +250,19 @@ def clean_readmissions_info(csv_path: str,
 def merge_clean_tables(directory_path: str):
 
     cleaned_files = [f for f in os.listdir(directory_path) if "_cleaned" in f]
-    df = pd.read_csv(cleaned_files[0])
+    df = pd.read_csv(f"{processed_path}{cleaned_files[0]}")
 
     for table in cleaned_files[1:]:
-        table = pd.read_csv(table)
+        table = pd.read_csv(f"{processed_path}/{table}")
         table.rename(columns ={"provider_number":"provider_id"}, inplace = True)
         df = pd.merge(df, table, on = "provider_id", how = "outer")
 
-    df.to_csv("med_data_merged.csv", index = False)
+    df.to_csv(f"{processed_path}med_data_merged.csv", index = False)
 
 if  __name__== "__main__":
 
-    remove_all_cleaned_files(os.getcwd())
+
+    remove_all_cleaned_files(processed_path)
 
     clean_general_info("Hospital_General_Information.csv",
                       exclude_cols = ["footnote",
@@ -292,6 +299,7 @@ if  __name__== "__main__":
                                            "region"],
                            na_to_clean = ["Not Available", "Too Few to Report"])
 
-    merge_clean_tables(os.getcwd())
+    merge_clean_tables(processed_path)
 
     bin_states_to_region("med_data_merged.csv")
+
