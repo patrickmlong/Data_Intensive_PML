@@ -1,0 +1,14 @@
+Requirement already satisfied: werkzeug in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages (0.15.4)
+Collecting Jinja2
+  Downloading https://files.pythonhosted.org/packages/65/e0/eb35e762802015cab1ccee04e8a277b03f1d8e53da3ec3106882ec42558b/Jinja2-2.10.3-py2.py3-none-any.whl (125kB)
+Collecting pyyaml
+  Downloading https://files.pythonhosted.org/packages/e3/e8/b3212641ee2718d556df0f23f78de8303f068fe29cdaa7a91018849582fe/PyYAML-5.1.2.tar.gz (265kB)
+Collecting MarkupSafe>=0.23 (from Jinja2)
+  Downloading https://files.pythonhosted.org/packages/ce/c6/f000f1af136ef74e4a95e33785921c73595c5390403f102e9b231b065b7a/MarkupSafe-1.1.1-cp37-cp37m-macosx_10_6_intel.whl
+Building wheels for collected packages: pyyaml
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Stored in directory: /Users/patricklong/Library/Caches/pip/wheels/d9/45/dd/65f0b38450c47cf7e5312883deb97d065e030c5cca0a365030
+Successfully built pyyaml
+Installing collected packages: MarkupSafe, Jinja2, pyyaml
+Successfully installed Jinja2-2.10.3 MarkupSafe-1.1.1 pyyaml-5.1.2

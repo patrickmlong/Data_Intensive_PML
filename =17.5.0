@@ -1,0 +1,18 @@
+Collecting pyopenssl
+  Downloading https://files.pythonhosted.org/packages/01/c8/ceb170d81bd3941cbeb9940fc6cc2ef2ca4288d0ca8929ea4db5905d904d/pyOpenSSL-19.0.0-py2.py3-none-any.whl (53kB)
+Collecting cryptography>=2.3 (from pyopenssl)
+  Downloading https://files.pythonhosted.org/packages/63/4e/57b7a6bd98906872fcd2531e74b532de2abe17d675a5cf171931fcb4a9e8/cryptography-2.7-cp34-abi3-macosx_10_6_intel.whl (1.6MB)
+Requirement already satisfied: six>=1.5.2 in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages (from pyopenssl) (1.12.0)
+Collecting asn1crypto>=0.21.0 (from cryptography>=2.3->pyopenssl)
+  Downloading https://files.pythonhosted.org/packages/8d/c3/be192e56ab85a7b2439caf83049b9936292aaf0398038a2fe28716f18951/asn1crypto-1.0.1-py2.py3-none-any.whl (103kB)
+Collecting cffi!=1.11.3,>=1.8 (from cryptography>=2.3->pyopenssl)
+  Downloading https://files.pythonhosted.org/packages/f0/48/5aa4ea664eba26dd5142558d04762f5065c02220b4665b3f7eecb9bb614e/cffi-1.12.3-cp37-cp37m-macosx_10_9_x86_64.whl (169kB)
+Collecting pycparser (from cffi!=1.11.3,>=1.8->cryptography>=2.3->pyopenssl)
+  Downloading https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz (158kB)
+Building wheels for collected packages: pycparser
+  Building wheel for pycparser (setup.py): started
+  Building wheel for pycparser (setup.py): finished with status 'done'
+  Stored in directory: /Users/patricklong/Library/Caches/pip/wheels/f2/9a/90/de94f8556265ddc9d9c8b271b0f63e57b26fb1d67a45564511
+Successfully built pycparser
+Installing collected packages: asn1crypto, pycparser, cffi, cryptography, pyopenssl
+Successfully installed asn1crypto-1.0.1 cffi-1.12.3 cryptography-2.7 pycparser-2.19 pyopenssl-19.0.0

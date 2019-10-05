@@ -1,0 +1,4 @@
+Collecting rope
+  Downloading https://files.pythonhosted.org/packages/69/b7/4802c5736b70fc7b7ace5d4f81355fae72702e1da0675e3a305959fdb9ce/rope-0.14.0-py3-none-any.whl (178kB)
+Installing collected packages: rope
+Successfully installed rope-0.14.0
