@@ -98,9 +98,9 @@ print(df_xgb_features[df_xgb_features.importances > 0])
 
 
 booster = xgb_model.get_booster()
-print(booster.get_dump[0])
-print(booster.get_dump[1])
-print(booster.get_dump[2])
+print(booster.get_dump()[0])
+print(booster.get_dump()[1])
+print(booster.get_dump()[2])
 
 
 def save_shap_fig(model, png_name: str):
