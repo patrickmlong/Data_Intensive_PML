@@ -1,3 +1,3 @@
 - Analysis of Medicare Hospital Compare data for predicting patient hospital satisfaction
 - CSV files downloaded from https://data.medicare.gov <br>
-- WIP: refactoring - key functionality is scripts.
+- WIP: refactoring - key functionality is in scripts/
